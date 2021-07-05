@@ -22,13 +22,26 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.pi4j/pi4j-core -->
+		<!-- https://mvnrepository.com/artifact/com.github.sarxos/webcam-capture -->
 		<dependency>
-			<groupId>com.pi4j</groupId>
-			<artifactId>pi4j-core</artifactId>
-			<version>1.4</version>
+			<groupId>com.github.sarxos</groupId>
+			<artifactId>webcam-capture</artifactId>
+			<version>0.3.12</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.boofcv/boofcv-io -->
+		<dependency>
+			<groupId>org.boofcv</groupId>
+			<artifactId>boofcv-io</artifactId>
+			<version>0.37</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.boofcv/WebcamCapture -->
+		<dependency>
+			<groupId>org.boofcv</groupId>
+			<artifactId>WebcamCapture</artifactId>
+			<version>0.26</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
