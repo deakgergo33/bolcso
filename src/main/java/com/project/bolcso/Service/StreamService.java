@@ -24,7 +24,7 @@ public class StreamService {
 
     private Webcam webcam = null;
 
-    @Scheduled(fixedDelay = 16)
+//    @Scheduled(fixedDelay = 16)
     private void capture() {
         try {
             if (Objects.isNull(webcam)) {
