@@ -4,9 +4,6 @@ cd bolcso-py-server
 python3 -m venv venv
 . venv/bin/activate
 pip install Flask
-cd venv/Scripts
+cd venv/bin
 mkdir static
 mkdir templates
-cd ..
-cd ..
-cd ..
