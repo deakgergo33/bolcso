@@ -91,6 +91,7 @@ def adc_control():
             led_pwm_phantom = value
             previous_value = value
             timer_on = True
+            webcontrol = False
         elif timer_on and not webcontrol:
             if (previous_value <= value + 1) or (previous_value >= value - 1):
                 if previous_value != value:
