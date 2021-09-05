@@ -19,6 +19,7 @@ fail_response = 'error'
 #led control variables
 led_pwm = 0
 previous_value = 0
+webcontrol = False
 
 #camera vars
 pi_camera = VideoCamera(flip=False)
@@ -47,8 +48,8 @@ def galleryView():
 @app.route("/intensity/<percent>")
 def setLightIntensity(percent):
     global led_pwm
-    global previous_value
-    previous_value = int(percent)
+    global webcontrol
+    webcontrol = True
     led_pwm = int(percent)
     return success_response
 
@@ -79,31 +80,34 @@ def adc_control():
     global led_pwm
     global counter
     global timer_on
+    global webcontrol
     while True:
+        led_pwm_phantom = led_pwm
         chan = AnalogIn(ads, ADS.P0)
         value = int(chan.value/325)
 
-        if ((previous_value >= value + 2) or (previous_value <= value - 2) or (value == 1)) and not timer_on:
+        if ((previous_value >= value + 2) or (previous_value <= value - 2) or (previous_value == 1)) and not timer_on:
             print(value)
-            led_pwm = value
+            led_pwm_phantom = value
             previous_value = value
             timer_on = True
-        elif timer_on:
+        elif timer_on and not webcontrol:
             if (previous_value <= value + 1) or (previous_value >= value - 1):
                 if previous_value != value:
                     print(value)
-                    led_pwm = value
+                    led_pwm_phantom = value
                     previous_value = value
                 counter+=1
             else:
                 print(value)
-                led_pwm = value
+                led_pwm_phantom = value
                 previous_value = value
                 counter = 0
             if counter > 40:
                 counter = 0
                 timer_on = False
 
+        led_pwm = led_pwm_phantom
         time.sleep(0.05)
 
 thread1 = threading.Thread(target = led_control)
