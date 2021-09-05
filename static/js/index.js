@@ -36,7 +36,11 @@ document.querySelectorAll("round-slider").forEach(function(el) {
 });
 
 function setLight(percent) {
-    $.get("/".concat(percent), function (result) {
-        console.log(result)
-    })
+    fetch("/intensity/".concat(percent)).then(function(response) {
+        return response.text();
+    }).then(function(data) {
+        console.log(data);
+    }).catch(function() {
+        console.log("error");
+    });
 }
